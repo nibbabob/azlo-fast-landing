@@ -1,0 +1,28 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[template.environment]
+  PUBLIC_SITE_NAME = "StartupLaunch"
+  PUBLIC_LOGO_TEXT = "🚀 Launch"
+  PUBLIC_COLOR_PRIMARY = "#38bdf8"
+  PUBLIC_COLOR_BG = "#0f172a"
+  
+  PUBLIC_HERO_BADGE = "New v2.0 Released"
+  PUBLIC_HERO_TITLE = "Ship your startup in days, not weeks."
+  PUBLIC_HERO_SUBTITLE = "The all-in-one template designed to convert visitors into customers."
+  
+  PUBLIC_CTA_MAIN = "Get Started Free"
+  PUBLIC_CTA_MAIN_LINK = "#pricing"
+  
+  PUBLIC_F1_TITLE = "Blazing Fast"
+  PUBLIC_F1_DESC = "Optimized for speed. Achieve 100/100 Lighthouse scores."
+  PUBLIC_F2_TITLE = "Secure by Default"
+  PUBLIC_F2_DESC = "Enterprise-grade security headers included."
+  PUBLIC_F3_TITLE = "Analytics Ready"
+  PUBLIC_F3_DESC = "Integrated with Google Analytics."
+  
+  PUBLIC_PRICE_AMOUNT = "$29"
+  PUBLIC_PRICE_PERIOD = "/month"
+  
+  PUBLIC_CONTACT_EMAIL = "hello@example.com"
