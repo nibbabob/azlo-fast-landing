@@ -1,28 +1,99 @@
+# netlify.toml
 [build]
   command = "npm run build"
   publish = "dist"
 
-[template.environment]
-  PUBLIC_SITE_NAME = "StartupLaunch"
-  PUBLIC_LOGO_TEXT = "🚀 Launch"
-  PUBLIC_COLOR_PRIMARY = "#38bdf8"
-  PUBLIC_COLOR_BG = "#0f172a"
-  
-  PUBLIC_HERO_BADGE = "New v2.0 Released"
-  PUBLIC_HERO_TITLE = "Ship your startup in days, not weeks."
-  PUBLIC_HERO_SUBTITLE = "The all-in-one template designed to convert visitors into customers."
-  
-  PUBLIC_CTA_MAIN = "Get Started Free"
-  PUBLIC_CTA_MAIN_LINK = "#pricing"
-  
-  PUBLIC_F1_TITLE = "Blazing Fast"
-  PUBLIC_F1_DESC = "Optimized for speed. Achieve 100/100 Lighthouse scores."
-  PUBLIC_F2_TITLE = "Secure by Default"
-  PUBLIC_F2_DESC = "Enterprise-grade security headers included."
-  PUBLIC_F3_TITLE = "Analytics Ready"
-  PUBLIC_F3_DESC = "Integrated with Google Analytics."
-  
-  PUBLIC_PRICE_AMOUNT = "$29"
-  PUBLIC_PRICE_PERIOD = "/month"
-  
-  PUBLIC_CONTACT_EMAIL = "hello@example.com"
+# THIS IS THE MAGIC PART
+[[template.environment]]
+  name = "PUBLIC_SITE_NAME"
+  label = "Site Name"
+  description = "Your startup or brand name"
+  default = "StartupLaunch"
+
+[[template.environment]]
+  name = "PUBLIC_LOGO_TEXT"
+  label = "Logo Text"
+  description = "Text shown in navbar (e.g. Launch)"
+  default = "Launch"
+
+[[template.environment]]
+  name = "PUBLIC_COLOR_PRIMARY"
+  label = "Primary Brand Color"
+  description = "Main accent color in hex"
+  default = "#38bdf8"
+
+[[template.environment]]
+  name = "PUBLIC_COLOR_BG"
+  label = "Background Color"
+  description = "Page background in hex"
+  default = "#0f172a"
+
+[[template.environment]]
+  name = "PUBLIC_HERO_BADGE"
+  label = "Hero Badge"
+  default = "New v2.0 Released"
+
+[[template.environment]]
+  name = "PUBLIC_HERO_TITLE"
+  label = "Hero Title"
+  default = "Ship your startup in days, not weeks."
+
+[[template.environment]]
+  name = "PUBLIC_HERO_SUBTITLE"
+  label = "Hero Subtitle"
+  default = "The all-in-one template designed to convert visitors into customers."
+
+[[template.environment]]
+  name = "PUBLIC_CTA_MAIN"
+  label = "Main CTA Button Text"
+  default = "Get Started Free"
+
+[[template.environment]]
+  name = "PUBLIC_CTA_MAIN_LINK"
+  label = "CTA Link"
+  default = "#pricing"
+
+[[template.environment]]
+  name = "PUBLIC_F1_TITLE"
+  label = "Feature 1 Title"
+  default = "Blazing Fast"
+
+[[template.environment]]
+  name = "PUBLIC_F1_DESC"
+  label = "Feature 1 Description"
+  default = "Optimized for speed. Achieve 100/100 Lighthouse scores."
+
+[[template.environment]]
+  name = "PUBLIC_F2_TITLE"
+  label = "Feature 2 Title"
+  default = "Secure by Default"
+
+[[template.environment]]
+  name = "PUBLIC_F2_DESC"
+  label = "Feature 2 Description"
+  default = "Enterprise-grade security headers included."
+
+[[template.environment]]
+  name = "PUBLIC_F3_TITLE"
+  label = "Feature 3 Title"
+  default = "Analytics Ready"
+
+[[template.environment]]
+  name = "PUBLIC_F3_DESC"
+  label = "Feature 3 Description"
+  default = "Integrated with Google Analytics."
+
+[[template.environment]]
+  name = "PUBLIC_PRICE_AMOUNT"
+  label = "Price Amount"
+  default = "$29"
+
+[[template.environment]]
+  name = "PUBLIC_PRICE_PERIOD"
+  label = "Price Period"
+  default = "/month"
+
+[[template.environment]]
+  name = "PUBLIC_CONTACT_EMAIL"
+  label = "Contact Email"
+  default = "hello@example.com"
