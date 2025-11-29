@@ -1,16 +1,40 @@
 ---
+// src/pages/index.astro i dit NYE template-repo
+import '../styles/global.css';
 
+// Her sker magien: Vi henter variablerne fra Netlify
+const title = import.meta.env.PUBLIC_HERO_TITLE || "Velkommen til din nye side";
+const subtitle = import.meta.env.PUBLIC_HERO_SUBTITLE || "Dette er en lynhurtig landingsside genereret af Azlo.pro.";
+const ctaLink = import.meta.env.PUBLIC_CTA_LINK || "#";
+const ctaText = "Kontakt Os"; // Du kan evt. gøre denne dynamisk også senere
 ---
 
-<html lang="en">
+<html lang="da">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{title}</title>
+        <meta name="description" content={subtitle} />
 	</head>
 	<body>
-		<h1>Astro</h1>
+        <div class="background-gradient"></div>
+        
+		<main class="landing-container">
+            <div class="content-box">
+                <span class="badge">High Performance Site</span>
+			    <h1>{title}</h1>
+                <p class="subtitle">{subtitle}</p>
+                
+                <a href={ctaLink} class="cta-button">
+                    {ctaText} &rarr;
+                </a>
+            </div>
+            
+            <footer>
+                <p>⚡ Powered by <a href="https://www.azlo.pro" target="_blank">Azlo.pro Engine</a></p>
+            </footer>
+		</main>
 	</body>
 </html>
