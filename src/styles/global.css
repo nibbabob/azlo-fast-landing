@@ -1,88 +1,169 @@
-/* src/styles/global.css */
+/* RESET & BASE */
 :root {
-    --primary: #2563eb;
-    --text: #1e293b;
-    --bg: #f8fafc;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--text);
+    color: var(--text-main);
+    line-height: 1.6;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
-.background-gradient {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 50% 0%, #e0e7ff 0%, transparent 50%);
-    z-index: -1;
+/* NAVIGATION */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
 }
 
+.logo {
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    /* Farven styres af --user-primary i index.astro */
+}
+
+.nav-cta {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+/* LAYOUT CONTAINER */
 .landing-container {
+    flex: 1;
+    width: 100%;
     max-width: 800px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 4rem 1.5rem;
     text-align: center;
 }
 
+/* HERO SECTION */
+.hero {
+    margin-bottom: 5rem;
+}
+
 .badge {
-    background: #dbeafe;
-    color: #1e40af;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-size: 0.875rem;
-    font-weight: 600;
+    display: inline-block;
+    background: #e0e7ff; /* Fallback blålig */
+    color: #3730a3;
+    font-size: 0.75rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
 }
 
 h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin: 1.5rem 0 1rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
     line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
     color: #0f172a;
+    letter-spacing: -0.03em;
 }
 
 .subtitle {
     font-size: 1.25rem;
-    color: #64748b;
+    color: var(--text-muted);
     margin-bottom: 2.5rem;
-    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta-button {
     display: inline-block;
-    background: var(--primary);
     color: white;
+    font-weight: 600;
+    text-decoration: none;
     padding: 1rem 2.5rem;
     border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
+    /* Background-color styres af --user-primary */
 }
 
 .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px -5px rgba(0,0,0,0.3);
 }
 
+/* FEATURES GRID */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-bottom: 5rem;
+    text-align: left;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    /* Farve styres af --user-primary */
+}
+
+.feature-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* FOOTER */
 footer {
-    margin-top: 4rem;
-    font-size: 0.875rem;
-    color: #94a3b8;
+    border-top: 1px solid var(--border);
+    padding-top: 3rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.contact-info {
+    margin-bottom: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.5rem;
+}
+
+.tiny {
+    font-size: 0.75rem;
+    opacity: 0.7;
 }
 
 footer a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
+    color: inherit;
+    text-decoration: underline;
 }
