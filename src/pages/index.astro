@@ -1,5 +1,5 @@
 ---
-// src/pages/index.astro
+// src/pages/index.astro (TEMPLATE REPO)
 import '../styles/global.css';
 
 // --- CONFIGURATION (Environment Variables with Defaults) ---
@@ -7,6 +7,7 @@ import '../styles/global.css';
 // 1. BRANDING & STYLE
 const siteName = import.meta.env.PUBLIC_SITE_NAME || "StartupLaunch";
 const primaryColor = import.meta.env.PUBLIC_COLOR_PRIMARY || "#38bdf8"; // Default Cyan
+const bgColor = import.meta.env.PUBLIC_COLOR_BG || "#0f172a"; // Default Dark Blue
 const logoText = import.meta.env.PUBLIC_LOGO_TEXT || "🚀 Launch";
 
 // 2. HERO SECTION
@@ -31,7 +32,6 @@ const pricePeriod = import.meta.env.PUBLIC_PRICE_PERIOD || "/month";
 
 // 5. FOOTER
 const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || "hello@example.com";
-
 ---
 
 <html lang="en">
@@ -45,10 +45,24 @@ const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || "hello@example.com"
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 	</head>
 	<body>
-        <style define:vars={{ primaryColor }}>
-            :root { --user-primary: var(--primaryColor); }
+        <style define:vars={{ primaryColor, bgColor }}>
+            :root { 
+                --user-primary: var(--primaryColor);
+                --bg-color: var(--bgColor);
+            }
+            body {
+                background-color: var(--bg-color);
+                color: #f8fafc; /* Default text white */
+            }
             /* Utility for Feature Icons */
-            .icon-box { color: var(--user-primary); background: rgba(255,255,255,0.05); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1rem; }
+            .icon-box { 
+                color: var(--user-primary); 
+                background: rgba(255,255,255,0.05); 
+                width: 50px; height: 50px; 
+                display: flex; align-items: center; justify-content: center; 
+                border-radius: 12px; margin-bottom: 1rem; 
+                font-size: 1.5rem;
+            }
         </style>
 
         <div class="bg-glow"></div>
@@ -84,10 +98,23 @@ const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || "hello@example.com"
                                     <span></span><span></span><span></span>
                                 </div>
                                 <div class="visual-content">
-                                    <p style="color: var(--user-primary); font-family: monospace;">> Deployment Successful 🚀</p>
-                                    <p style="color: var(--text-muted); font-family: monospace;">> Listening on port 4321...</p>
+                                    <div class="app-ui-header">
+                                        <div class="app-logo-mini">{siteName}</div>
+                                        <div class="app-user-circle"></div>
+                                    </div>
+                                    <div class="app-ui-body">
+                                        <div class="app-hero-box">
+                                            <div class="skeleton-text sm"></div>
+                                            <div class="skeleton-graph"></div>
+                                        </div>
+                                        <div class="app-grid-row">
+                                            <div class="app-box"></div>
+                                            <div class="app-box"></div>
+                                            <div class="app-box"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -191,81 +218,135 @@ const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || "hello@example.com"
                 position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
                 width: 90%; max-width: 1000px; z-index: 100;
                 border-radius: 100px; padding: 0.8rem 0;
+                backdrop-filter: blur(12px);
+                background: rgba(15, 23, 42, 0.6);
             }
             .nav-content { display: flex; justify-content: space-between; align-items: center; }
             .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
+            
+            /* Text Gradient Helper */
+            .text-gradient {
+                background: linear-gradient(135deg, #fff 0%, var(--user-primary) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
             .nav-links { display: flex; gap: 2rem; }
             .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s;}
-            .nav-links a:hover { color: var(--text-main); }
+            .nav-links a:hover { color: #fff; }
 
             /* Hero */
             .hero { padding: 10rem 0 5rem; text-align: center; }
             .badge { 
-                background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); 
+                background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
                 color: var(--user-primary); font-size: 0.8rem; padding: 0.4rem 1rem; 
                 border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;
                 margin-bottom: 1.5rem; display: inline-block;
             }
-            h1 { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
-            .subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem; }
+            h1 { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.03em; color: white;}
+            .subtitle { font-size: 1.2rem; color: #94a3b8; max-width: 600px; margin: 0 auto 2.5rem; }
             .cta-group { display: flex; gap: 1rem; justify-content: center; margin-bottom: 4rem; }
 
-            /* Hero Visual */
-            .hero-visual { max-width: 800px; margin: 0 auto; }
-            .visual-card { 
-                height: 300px; border-radius: 16px; padding: 1rem; text-align: left;
-                background: rgba(15, 23, 42, 0.8); 
+            /* Buttons */
+            .btn-primary { 
+                background: var(--user-primary); color: #000; padding: 0.8rem 1.5rem; 
+                border-radius: 8px; font-weight: 600; text-decoration: none; transition: opacity 0.2s;
             }
-            .window-dots { display: flex; gap: 6px; margin-bottom: 1rem; }
-            .window-dots span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+            .btn-primary:hover { opacity: 0.9; }
+            .btn-secondary {
+                background: rgba(255,255,255,0.1); color: #fff; padding: 0.8rem 1.5rem; 
+                border-radius: 8px; font-weight: 600; text-decoration: none; transition: background 0.2s;
+            }
+            .btn-secondary:hover { background: rgba(255,255,255,0.15); }
+            .btn-sm { padding: 0.5rem 1rem; font-size: 0.9rem; }
+
+            /* Hero Visual */
+            .hero-visual { max-width: 800px; margin: 0 auto; perspective: 1000px; }
+            .visual-card { 
+                height: 350px; border-radius: 16px; padding: 1rem; text-align: left;
+                background: rgba(30, 41, 59, 0.5); /* Semi-transparent card base */
+                border: 1px solid rgba(255,255,255,0.1);
+                display: flex; flex-direction: column;
+                box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            }
+            .window-dots { display: flex; gap: 6px; margin-bottom: 1.5rem; padding-left: 0.5rem; }
+            .window-dots span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.1); }
+
+            /* ABSTRACT APP UI (Replaces the Terminal Text) */
+            .visual-content { flex: 1; display: flex; flex-direction: column; gap: 1rem; padding: 0 1rem 1rem; opacity: 0.8; }
+            
+            .app-ui-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .app-logo-mini { font-weight: 700; font-size: 0.9rem; color: var(--user-primary); }
+            .app-user-circle { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+            
+            .app-ui-body { display: flex; flex-direction: column; gap: 1rem; height: 100%; }
+            .app-hero-box { 
+                background: rgba(255,255,255,0.03); border-radius: 8px; padding: 1.5rem; 
+                flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 1rem;
+            }
+            .skeleton-text { height: 10px; width: 40%; background: rgba(255,255,255,0.1); border-radius: 4px; }
+            .skeleton-graph { 
+                height: 60px; width: 100%; border-radius: 6px; 
+                background: linear-gradient(90deg, var(--user-primary) 0%, transparent 80%); 
+                opacity: 0.2; 
+            }
+            
+            .app-grid-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; height: 80px; }
+            .app-box { background: rgba(255,255,255,0.03); border-radius: 8px; }
 
             /* Social Proof */
-            .logos { text-align: center; padding: 2rem 0; opacity: 0.6; }
-            .logos p { font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 1rem; }
-            .logo-grid { display: flex; gap: 3rem; justify-content: center; font-weight: 700; font-size: 1.2rem; color: var(--text-muted); }
+            .logos { text-align: center; padding: 2rem 0; opacity: 0.5; margin-top: 2rem; }
+            .logos p { font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 1rem; color: #94a3b8; }
+            .logo-grid { display: flex; gap: 3rem; justify-content: center; font-weight: 700; font-size: 1.2rem; color: #cbd5e1; flex-wrap: wrap;}
 
             /* Sections */
             section { padding: 5rem 0; }
-            .section-header { text-align: center; margin-bottom: 3rem; }
-            .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-            .section-header p { color: var(--text-muted); font-size: 1.1rem; }
+            .section-header { text-align: center; margin-bottom: 4rem; }
+            .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; color: white; }
+            .section-header p { color: #94a3b8; font-size: 1.1rem; }
 
             /* Grids */
             .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-            .feature-card { padding: 2rem; border-radius: 20px; transition: transform 0.3s; }
+            .feature-card { 
+                padding: 2.5rem; border-radius: 20px; transition: transform 0.3s; 
+                background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+            }
             .feature-card:hover { transform: translateY(-5px); border-color: var(--user-primary); }
-            .feature-card h3 { margin-bottom: 0.5rem; font-size: 1.25rem; }
-            .feature-card p { color: var(--text-muted); }
+            .feature-card h3 { margin-bottom: 0.5rem; font-size: 1.25rem; color: white; }
+            .feature-card p { color: #94a3b8; line-height: 1.6; }
 
             /* Pricing */
             .pricing-card { 
-                max-width: 400px; margin: 0 auto; padding: 3rem; border-radius: 24px; text-align: center; 
+                max-width: 450px; margin: 0 auto; padding: 3rem; border-radius: 24px; text-align: center; 
                 border: 1px solid var(--user-primary); /* Highlight border */
+                background: rgba(30, 41, 59, 0.4); backdrop-filter: blur(10px);
             }
+            .pricing-card h3 { color: white; font-size: 1.5rem; }
             .price { margin: 1.5rem 0; }
-            .amount { font-size: 3.5rem; font-weight: 800; color: var(--text-main); }
-            .period { color: var(--text-muted); font-size: 1.2rem; }
+            .amount { font-size: 3.5rem; font-weight: 800; color: white; }
+            .period { color: #94a3b8; font-size: 1.2rem; }
             .checklist { list-style: none; text-align: left; margin: 2rem 0; padding-left: 1rem;}
-            .checklist li { margin-bottom: 0.8rem; color: var(--text-muted); }
-            .btn-block { width: 100%; }
+            .checklist li { margin-bottom: 0.8rem; color: #cbd5e1; }
+            .btn-block { width: 100%; display: block; text-align: center; }
 
             /* FAQ */
-            .faq-grid { display: grid; gap: 1rem; max-width: 800px; margin: 0 auto; }
-            .faq-item { padding: 1.5rem; border-radius: 12px; }
-            .faq-item h4 { margin-bottom: 0.5rem; color: var(--text-main); }
-            .faq-item p { color: var(--text-muted); font-size: 0.95rem; }
+            .faq-grid { display: grid; gap: 1.5rem; max-width: 800px; margin: 0 auto; }
+            .faq-item { padding: 2rem; border-radius: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); }
+            .faq-item h4 { margin-bottom: 0.5rem; color: white; font-size: 1.1rem; }
+            .faq-item p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; }
 
             /* Footer */
-            footer { border-top: 1px solid var(--border-color); padding: 3rem 0; margin-top: 4rem; }
-            .footer-content { display: flex; justify-content: space-between; }
-            .tiny { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; }
-            .footer-col a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+            footer { border-top: 1px solid rgba(255,255,255,0.1); padding: 3rem 0; margin-top: 4rem; }
+            .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
+            .tiny { font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; }
+            .footer-col a { color: #94a3b8; text-decoration: none; transition: color 0.2s; }
             .footer-col a:hover { color: var(--user-primary); }
 
             @media (max-width: 768px) {
                 .nav-links { display: none; }
                 h1 { font-size: 2.5rem; }
-                .logo-grid { flex-wrap: wrap; gap: 1.5rem; }
+                .logo-grid { gap: 1.5rem; }
+                .grid-3 { grid-template-columns: 1fr; }
             }
         </style>
 	</body>
