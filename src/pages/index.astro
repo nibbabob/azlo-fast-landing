@@ -1,97 +1,272 @@
 ---
-// src/pages/index.astro (i Template Repo)
+// src/pages/index.astro
 import '../styles/global.css';
 
-// 1. GENERELT & DESIGN
-const title = import.meta.env.PUBLIC_HERO_TITLE || "Velkommen til din nye side";
-const subtitle = import.meta.env.PUBLIC_HERO_SUBTITLE || "Dette er en lynhurtig landingsside.";
-const siteName = import.meta.env.PUBLIC_SITE_NAME || "Mit Firma";
+// --- CONFIGURATION (Environment Variables with Defaults) ---
 
-// Farver (Standard blå hvis intet vælges)
-const primaryColor = import.meta.env.PUBLIC_COLOR_PRIMARY || "#2563eb";
-const bgColor = import.meta.env.PUBLIC_COLOR_BG || "#f8fafc";
+// 1. BRANDING & STYLE
+const siteName = import.meta.env.PUBLIC_SITE_NAME || "StartupLaunch";
+const primaryColor = import.meta.env.PUBLIC_COLOR_PRIMARY || "#38bdf8"; // Default Cyan
+const logoText = import.meta.env.PUBLIC_LOGO_TEXT || "🚀 Launch";
 
-// 2. HERO ACTION
-const ctaLink = import.meta.env.PUBLIC_CTA_LINK || "#";
-const ctaText = import.meta.env.PUBLIC_CTA_TEXT || "Kontakt Os";
+// 2. HERO SECTION
+const heroBadge = import.meta.env.PUBLIC_HERO_BADGE || "New v2.0 Released";
+const heroTitle = import.meta.env.PUBLIC_HERO_TITLE || "Ship your startup in days, not weeks.";
+const heroSubtitle = import.meta.env.PUBLIC_HERO_SUBTITLE || "The all-in-one template designed to convert visitors into customers. Fast, secure, and fully customizable.";
+const ctaMain = import.meta.env.PUBLIC_CTA_MAIN || "Get Started Free";
+const ctaMainLink = import.meta.env.PUBLIC_CTA_MAIN_LINK || "#pricing";
+const ctaSecondary = import.meta.env.PUBLIC_CTA_SEC || "View Live Demo";
 
-// 3. FEATURES (3 salgsargumenter)
-const feat1Title = import.meta.env.PUBLIC_FEAT1_TITLE || "Lynhurtig";
-const feat1Desc = import.meta.env.PUBLIC_FEAT1_DESC || "Siden loader på under 1 sekund.";
+// 3. FEATURES (Grid of 3)
+const f1Title = import.meta.env.PUBLIC_F1_TITLE || "Blazing Fast";
+const f1Desc = import.meta.env.PUBLIC_F1_DESC || "Optimized for speed. Achieve 100/100 Lighthouse scores automatically.";
+const f2Title = import.meta.env.PUBLIC_F2_TITLE || "Secure by Default";
+const f2Desc = import.meta.env.PUBLIC_F2_DESC || "Enterprise-grade security headers and sanitation out of the box.";
+const f3Title = import.meta.env.PUBLIC_F3_TITLE || "Analytics Ready";
+const f3Desc = import.meta.env.PUBLIC_F3_DESC || "Integrated with Google Analytics, Plausible, or your tool of choice.";
 
-const feat2Title = import.meta.env.PUBLIC_FEAT2_TITLE || "Mobilvenlig";
-const feat2Desc = import.meta.env.PUBLIC_FEAT2_DESC || "Ser perfekt ud på alle enheder.";
+// 4. PRICING (Simple monthly)
+const priceAmount = import.meta.env.PUBLIC_PRICE_AMOUNT || "$29";
+const pricePeriod = import.meta.env.PUBLIC_PRICE_PERIOD || "/month";
 
-const feat3Title = import.meta.env.PUBLIC_FEAT3_TITLE || "SEO Optimeret";
-const feat3Desc = import.meta.env.PUBLIC_FEAT3_DESC || "Google elsker ren HTML og hastighed.";
+// 5. FOOTER
+const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || "hello@example.com";
 
-// 4. FOOTER
-const footerEmail = import.meta.env.PUBLIC_FOOTER_EMAIL || "";
-const footerPhone = import.meta.env.PUBLIC_FOOTER_PHONE || "";
 ---
 
-<html lang="da">
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} | {siteName}</title>
-        <meta name="description" content={subtitle} />
+		<title>{heroTitle} | {siteName}</title>
+        <meta name="description" content={heroSubtitle} />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 	</head>
 	<body>
-        <style define:vars={{ primaryColor, bgColor }}>
-            :root {
-                --user-primary: var(--primaryColor);
-                --user-bg: var(--bgColor);
-            }
-            body { background-color: var(--user-bg); }
-            .cta-button { background-color: var(--user-primary); }
-            .feature-icon { color: var(--user-primary); }
-            .logo { color: var(--user-primary); }
+        <style define:vars={{ primaryColor }}>
+            :root { --user-primary: var(--primaryColor); }
+            /* Utility for Feature Icons */
+            .icon-box { color: var(--user-primary); background: rgba(255,255,255,0.05); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1rem; }
         </style>
 
-        <nav>
-            <div class="logo">{siteName}</div>
-            <a href={ctaLink} class="nav-cta">Kontakt</a>
+        <div class="bg-glow"></div>
+
+        <nav class="glass-panel nav-bar">
+            <div class="container nav-content">
+                <div class="logo text-gradient">{logoText}</div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <a href={ctaMainLink} class="btn btn-primary btn-sm">{ctaMain}</a>
+            </div>
         </nav>
 
-		<main class="landing-container">
+		<main>
             <section class="hero">
-                <span class="badge">High Performance</span>
-			    <h1>{title}</h1>
-                <p class="subtitle">{subtitle}</p>
-                
-                <a href={ctaLink} class="cta-button">
-                    {ctaText} &rarr;
-                </a>
+                <div class="container">
+                    <div class="hero-content">
+                        <span class="badge">{heroBadge}</span>
+                        <h1 class="text-gradient">{heroTitle}</h1>
+                        <p class="subtitle">{heroSubtitle}</p>
+                        
+                        <div class="cta-group">
+                            <a href={ctaMainLink} class="btn btn-primary">{ctaMain}</a>
+                            <a href="#" class="btn btn-secondary">{ctaSecondary}</a>
+                        </div>
+
+                        <div class="hero-visual animate-float">
+                            <div class="glass-panel visual-card">
+                                <div class="window-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="visual-content">
+                                    <p style="color: var(--user-primary); font-family: monospace;">> Deployment Successful 🚀</p>
+                                    <p style="color: var(--text-muted); font-family: monospace;">> Listening on port 4321...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
-            <section class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>{feat1Title}</h3>
-                    <p>{feat1Desc}</p>
+            <section class="logos">
+                <div class="container">
+                    <p>TRUSTED BY INNOVATIVE TEAMS</p>
+                    <div class="logo-grid">
+                        <span>ACME Corp</span>
+                        <span>Stark Ind</span>
+                        <span>Wayne Ent</span>
+                        <span>Cyberdyne</span>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>{feat2Title}</h3>
-                    <p>{feat2Desc}</p>
+            </section>
+
+            <section id="features" class="features">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Everything you need</h2>
+                        <p>We handled the boring stuff so you can focus on the product.</p>
+                    </div>
+                    <div class="grid-3">
+                        <div class="glass-panel feature-card">
+                            <div class="icon-box">⚡</div>
+                            <h3>{f1Title}</h3>
+                            <p>{f1Desc}</p>
+                        </div>
+                        <div class="glass-panel feature-card">
+                            <div class="icon-box">🛡️</div>
+                            <h3>{f2Title}</h3>
+                            <p>{f2Desc}</p>
+                        </div>
+                        <div class="glass-panel feature-card">
+                            <div class="icon-box">📈</div>
+                            <h3>{f3Title}</h3>
+                            <p>{f3Desc}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔍</div>
-                    <h3>{feat3Title}</h3>
-                    <p>{feat3Desc}</p>
+            </section>
+
+            <section id="pricing" class="pricing">
+                <div class="container">
+                    <div class="glass-panel pricing-card">
+                        <h3>Simple Pricing</h3>
+                        <div class="price">
+                            <span class="amount">{priceAmount}</span>
+                            <span class="period">{pricePeriod}</span>
+                        </div>
+                        <p>One plan, all features. No hidden fees.</p>
+                        <ul class="checklist">
+                            <li>✅ Unlimited Projects</li>
+                            <li>✅ Custom Domain</li>
+                            <li>✅ 24/7 Support</li>
+                            <li>✅ Analytics Dashboard</li>
+                        </ul>
+                        <a href={ctaMainLink} class="btn btn-primary btn-block">{ctaMain}</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="faq" class="faq">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Frequently Asked Questions</h2>
+                    </div>
+                    <div class="faq-grid">
+                        <div class="glass-panel faq-item">
+                            <h4>Is this template free?</h4>
+                            <p>Yes, it is open source and free to use for personal and commercial projects.</p>
+                        </div>
+                        <div class="glass-panel faq-item">
+                            <h4>How do I deploy this?</h4>
+                            <p>Simply click the deploy button on your host of choice and set the Environment Variables.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
             
             <footer>
-                <div class="contact-info">
-                    {footerEmail && <p>📧 {footerEmail}</p>}
-                    {footerPhone && <p>📞 {footerPhone}</p>}
+                <div class="container footer-content">
+                    <div class="footer-col">
+                        <div class="logo">{siteName}</div>
+                        <p class="tiny">© {new Date().getFullYear()} All rights reserved.</p>
+                    </div>
+                    <div class="footer-col">
+                        <p>Contact</p>
+                        <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+                    </div>
                 </div>
-                <p class="copyright">© {new Date().getFullYear()} {siteName}. <br/><span class="tiny">Powered by <a href="https://www.azlo.pro" target="_blank">Azlo.pro Engine</a></span></p>
             </footer>
 		</main>
+
+        <style>
+            /* Page-Specific Styles */
+            
+            /* Nav */
+            .nav-bar {
+                position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                width: 90%; max-width: 1000px; z-index: 100;
+                border-radius: 100px; padding: 0.8rem 0;
+            }
+            .nav-content { display: flex; justify-content: space-between; align-items: center; }
+            .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
+            .nav-links { display: flex; gap: 2rem; }
+            .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s;}
+            .nav-links a:hover { color: var(--text-main); }
+
+            /* Hero */
+            .hero { padding: 10rem 0 5rem; text-align: center; }
+            .badge { 
+                background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); 
+                color: var(--user-primary); font-size: 0.8rem; padding: 0.4rem 1rem; 
+                border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;
+                margin-bottom: 1.5rem; display: inline-block;
+            }
+            h1 { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; font-weight: 800; margin-bottom: 1.5rem; letter-spacing: -0.03em; }
+            .subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem; }
+            .cta-group { display: flex; gap: 1rem; justify-content: center; margin-bottom: 4rem; }
+
+            /* Hero Visual */
+            .hero-visual { max-width: 800px; margin: 0 auto; }
+            .visual-card { 
+                height: 300px; border-radius: 16px; padding: 1rem; text-align: left;
+                background: rgba(15, 23, 42, 0.8); 
+            }
+            .window-dots { display: flex; gap: 6px; margin-bottom: 1rem; }
+            .window-dots span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+
+            /* Social Proof */
+            .logos { text-align: center; padding: 2rem 0; opacity: 0.6; }
+            .logos p { font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 1rem; }
+            .logo-grid { display: flex; gap: 3rem; justify-content: center; font-weight: 700; font-size: 1.2rem; color: var(--text-muted); }
+
+            /* Sections */
+            section { padding: 5rem 0; }
+            .section-header { text-align: center; margin-bottom: 3rem; }
+            .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+            .section-header p { color: var(--text-muted); font-size: 1.1rem; }
+
+            /* Grids */
+            .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+            .feature-card { padding: 2rem; border-radius: 20px; transition: transform 0.3s; }
+            .feature-card:hover { transform: translateY(-5px); border-color: var(--user-primary); }
+            .feature-card h3 { margin-bottom: 0.5rem; font-size: 1.25rem; }
+            .feature-card p { color: var(--text-muted); }
+
+            /* Pricing */
+            .pricing-card { 
+                max-width: 400px; margin: 0 auto; padding: 3rem; border-radius: 24px; text-align: center; 
+                border: 1px solid var(--user-primary); /* Highlight border */
+            }
+            .price { margin: 1.5rem 0; }
+            .amount { font-size: 3.5rem; font-weight: 800; color: var(--text-main); }
+            .period { color: var(--text-muted); font-size: 1.2rem; }
+            .checklist { list-style: none; text-align: left; margin: 2rem 0; padding-left: 1rem;}
+            .checklist li { margin-bottom: 0.8rem; color: var(--text-muted); }
+            .btn-block { width: 100%; }
+
+            /* FAQ */
+            .faq-grid { display: grid; gap: 1rem; max-width: 800px; margin: 0 auto; }
+            .faq-item { padding: 1.5rem; border-radius: 12px; }
+            .faq-item h4 { margin-bottom: 0.5rem; color: var(--text-main); }
+            .faq-item p { color: var(--text-muted); font-size: 0.95rem; }
+
+            /* Footer */
+            footer { border-top: 1px solid var(--border-color); padding: 3rem 0; margin-top: 4rem; }
+            .footer-content { display: flex; justify-content: space-between; }
+            .tiny { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; }
+            .footer-col a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+            .footer-col a:hover { color: var(--user-primary); }
+
+            @media (max-width: 768px) {
+                .nav-links { display: none; }
+                h1 { font-size: 2.5rem; }
+                .logo-grid { flex-wrap: wrap; gap: 1.5rem; }
+            }
+        </style>
 	</body>
 </html>

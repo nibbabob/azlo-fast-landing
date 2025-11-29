@@ -1,0 +1,43 @@
+{
+  "env": {
+    "PUBLIC_HERO_TITLE": {
+      "description": "The main headline on the landing page.",
+      "value": "Welcome to your new site"
+    },
+    "PUBLIC_HERO_SUBTITLE": {
+      "description": "The sub-headline under the main title.",
+      "value": "This is a blazing fast landing page."
+    },
+    "PUBLIC_SITE_NAME": {
+      "description": "The name of your website/brand (appears in Nav and Footer).",
+      "value": "My Brand"
+    },
+    "PUBLIC_COLOR_PRIMARY": {
+      "description": "Primary brand color (Hex code, e.g., #2563eb).",
+      "value": "#2563eb"
+    },
+    "PUBLIC_COLOR_BG": {
+      "description": "Background color (Hex code, e.g., #f8fafc).",
+      "value": "#f8fafc"
+    },
+    "PUBLIC_CTA_TEXT": {
+      "description": "Text for the main Call-to-Action button.",
+      "value": "Get Started"
+    },
+    "PUBLIC_CTA_LINK": {
+      "description": "Where the button should link to (e.g., mailto:you@email.com)",
+      "value": "#"
+    },
+    "PUBLIC_FEAT1_TITLE": { "value": "Fast" },
+    "PUBLIC_FEAT1_DESC": { "value": "Loads in under 1 second." },
+    "PUBLIC_FEAT2_TITLE": { "value": "Mobile" },
+    "PUBLIC_FEAT2_DESC": { "value": "Responsive design." },
+    "PUBLIC_FEAT3_TITLE": { "value": "SEO" },
+    "PUBLIC_FEAT3_DESC": { "value": "Optimized for search engines." },
+    "PUBLIC_FOOTER_EMAIL": { "description": "Optional: Email to show in footer.", "value": "" },
+    "PUBLIC_FOOTER_PHONE": { "description": "Optional: Phone number to show in footer.", "value": "" }
+  },
+  "framework": "astro",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist"
+}
