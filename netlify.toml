@@ -1,4 +1,7 @@
-[build]
+{
+type: "file_update",
+fileName: "netlify.toml",
+fullContent: `[build]
   command = "npm run build"
   publish = "dist"
 
@@ -11,9 +14,13 @@
   PUBLIC_HERO_BADGE = "Hero Badge Text (Small tag above title)"
   PUBLIC_HERO_TITLE = "Main Hero Headline"
   PUBLIC_HERO_SUBTITLE = "Hero Subtitle Description"
+  PUBLIC_HERO_IMAGE = "Optional: Hero Image URL (reNzplaces abstract visual)"
   
   PUBLIC_CTA_MAIN = "Main Button Text"
   PUBLIC_CTA_MAIN_LINK = "Main Button Link (e.g. #pricing)"
+  PUBLIC_CTA_SEC_LINK = "Secondary Button Link (e.g. #features)"
+  
+  PUBLIC_TRUSTED_LOGOS = "List of trusted companies (comma separated)"
   
   PUBLIC_F1_TITLE = "Feature 1 Title"
   PUBLIC_F1_DESC = "Feature 1 Description"
@@ -26,3 +33,5 @@
   PUBLIC_PRICE_PERIOD = "Price Period (e.g. /month)"
   
   PUBLIC_CONTACT_EMAIL = "Contact Email Address"
+`
+}
